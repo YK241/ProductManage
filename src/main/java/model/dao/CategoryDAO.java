@@ -23,7 +23,7 @@ public class CategoryDAO {
         	    CategoryBean category = new CategoryBean();
         	    category.setId(rs.getInt("id"));
         	    category.setName(rs.getString("category_name"));
-        	    System.out.println("取得: " + category.getId() + " - " + category.getName()); // 追加
+        	    System.out.println("取得: " + category.getId() + " - " + category.getName());
         	    categories.add(category);
         	}
 
