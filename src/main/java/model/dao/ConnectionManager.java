@@ -6,18 +6,18 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/product_management?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASS = "pass";//passの為仮名
+	private static final String URL = "jdbc:mysql://localhost:3306/product_management?serverTimezone=UTC";
+	private static final String USER = "root";
+	private static final String PASS = "pass";//passの為仮名
 
-    public static Connection getConnection() throws SQLException {
-    	
-    	try {
-    	    Class.forName("com.mysql.cj.jdbc.Driver");
-    	} catch (ClassNotFoundException e) {
-    	    e.printStackTrace();
-    	}
-    	
-        return DriverManager.getConnection(URL, USER, PASS);
-    }
+	public static Connection getConnection() throws SQLException {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return DriverManager.getConnection(URL, USER, PASS);
+	}
 }

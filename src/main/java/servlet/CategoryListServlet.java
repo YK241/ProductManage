@@ -14,16 +14,16 @@ import model.entity.CategoryBean;
 @WebServlet("/category-list")
 public class CategoryListServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        CategoryDAO dao = new CategoryDAO();
-        List<CategoryBean> categories = dao.getAllCategories();
-        
-        System.out.println("カテゴリ件数: " + categories.size());
+		CategoryDAO dao = new CategoryDAO();
+		List<CategoryBean> categories = dao.getAllCategories();
 
-        request.setAttribute("categories", categories);
-        request.getRequestDispatcher("/category-list.jsp").forward(request, response);
-    }
+		System.out.println("カテゴリ件数: " + categories.size());
+
+		request.setAttribute("categories", categories);
+		request.getRequestDispatcher("/category-list.jsp").forward(request, response);
+	}
 }

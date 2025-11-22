@@ -1,19 +1,35 @@
 package model.entity;
 
-public class CategoryBean {
-    private int id;
-    private String name;
+import java.io.Serializable;
 
-    public CategoryBean() {}
+public class CategoryBean implements Serializable {
 
-    public CategoryBean(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+	private int id;
+	private String name;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+	public CategoryBean() {
+	}
+
+	public CategoryBean(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
