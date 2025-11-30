@@ -8,8 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.dao.CategoryDAO;
 import model.entity.CategoryBean;
+import model.dao.CategoryDAO;
 
 @WebServlet("/category-list")
 public class CategoryListServlet extends HttpServlet {

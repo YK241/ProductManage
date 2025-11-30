@@ -26,5 +26,8 @@
 		}
 		%>
 	</table>
+
+	<a href="category-register.jsp">新規登録</a>
+
 </body>
 </html>
