@@ -29,7 +29,6 @@ public class CategoryDAO {
 		}
 	}
 
-
 	public List<CategoryBean> getAllCategories() {
 		List<CategoryBean> categories = new ArrayList<>();
 		String sql = "SELECT id, category_name FROM categories";
@@ -40,9 +39,8 @@ public class CategoryDAO {
 
 			while (rs.next()) {
 				CategoryBean category = new CategoryBean();
-				category.setId(rs.getInt("id"));
+				category.setCategoryId(rs.getInt("id"));
 				category.setName(rs.getString("category_name"));
-				System.out.println("取得: " + category.getId() + " - " + category.getName());
 				categories.add(category);
 			}
 

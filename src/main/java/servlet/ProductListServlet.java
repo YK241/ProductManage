@@ -8,20 +8,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.dao.CategoryDAO;
-import model.entity.CategoryBean;
+import model.dao.ProductDAO;
+import model.entity.ProductBean;
 
-@WebServlet("/category-list")
-public class CategoryListServlet extends HttpServlet {
+@WebServlet("/product-list")
+public class ProductListServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		CategoryDAO dao = new CategoryDAO();
-		List<CategoryBean> categories = dao.getAllCategories();
+		List<ProductBean> products = new ProductDAO().getAllProducts();
+		request.setAttribute("products", products);
 
-		request.setAttribute("categories", categories);
-		request.getRequestDispatcher("/category-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/product-list.jsp").forward(request, response);
 	}
 }

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<html>
+<html lang="ja">
 <head>
 <title>カテゴリ登録</title>
 </head>
