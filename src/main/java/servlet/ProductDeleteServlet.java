@@ -12,19 +12,24 @@ import model.dao.ProductDAO;
 @WebServlet("/product-delete")
 public class ProductDeleteServlet extends HttpServlet {
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    protected ProductDAO createProductDAO() {
+        return new ProductDAO();
+    }
 
-		int id = Integer.parseInt(request.getParameter("id"));
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		boolean result = new ProductDAO().deleteProduct(id);
+        int id = Integer.parseInt(request.getParameter("id"));
 
-		if (result) {
-			response.sendRedirect("product-list");
-		} else {
-			request.setAttribute("error", "削除に失敗しました");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
-		}
-	}
+        boolean result = createProductDAO().deleteProduct(id);
+
+        if (result) {
+            response.sendRedirect("product-list");
+        } else {
+            request.setAttribute("error", "削除に失敗しました");
+            request.getRequestDispatcher("/error.jsp")
+                   .forward(request, response);
+        }
+    }
 }

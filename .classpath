@@ -14,5 +14,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mysql-connector-j-9.5.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/byte-buddy-1.12.22.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/byte-buddy-agent-1.12.22.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mockito-core-4.11.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/objenesis-3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
