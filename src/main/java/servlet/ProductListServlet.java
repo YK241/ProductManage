@@ -14,33 +14,13 @@ import model.entity.ProductBean;
 @WebServlet("/product-list")
 public class ProductListServlet extends HttpServlet {
 
-    protected ProductDAO createProductDAO() {
-        return new ProductDAO();
-    }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		List<ProductBean> products = new ProductDAO().getAllProducts();
+		request.setAttribute("products", products);
 
-        String categoryIdStr = request.getParameter("categoryId");
-
-        List<ProductBean> products;
-        ProductDAO dao = createProductDAO();
-
-        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
-            try {
-                int categoryId = Integer.parseInt(categoryIdStr);
-                products = dao.getProductsByCategory(categoryId);
-            } catch (NumberFormatException e) {
-                products = dao.getAllProducts();
-            }
-        } else {
-            products = dao.getAllProducts();
-        }
-
-        request.setAttribute("products", products);
-
-        request.getRequestDispatcher("/product-list.jsp")
-               .forward(request, response);
-    }
+		request.getRequestDispatcher("/product-list.jsp").forward(request, response);
+	}
 }

@@ -16,19 +16,11 @@ import model.entity.ProductBean;
 @WebServlet("/product-add")
 public class ProductAddServlet extends HttpServlet {
 
-	protected CategoryDAO createCategoryDAO() {
-		return new CategoryDAO();
-	}
-
-	protected ProductDAO createProductDAO() {
-		return new ProductDAO();
-	}
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+		List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 		request.setAttribute("categories", categories);
 
 		request.getRequestDispatcher("/product-add.jsp").forward(request, response);
@@ -50,7 +42,7 @@ public class ProductAddServlet extends HttpServlet {
 
 			request.setAttribute("error", "すべての項目を正しく入力してください。");
 
-			List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+			List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 			request.setAttribute("categories", categories);
 
 			request.getRequestDispatcher("/product-add.jsp").forward(request, response);
@@ -69,7 +61,7 @@ public class ProductAddServlet extends HttpServlet {
 
 			request.setAttribute("error", "数値項目には正しい数値を入力してください。");
 
-			List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+			List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 			request.setAttribute("categories", categories);
 
 			request.getRequestDispatcher("/product-add.jsp").forward(request, response);
@@ -80,7 +72,7 @@ public class ProductAddServlet extends HttpServlet {
 
 			request.setAttribute("error", "価格と在庫数は0以上で入力してください。");
 
-			List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+			List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 			request.setAttribute("categories", categories);
 
 			request.getRequestDispatcher("/product-add.jsp").forward(request, response);
@@ -88,14 +80,14 @@ public class ProductAddServlet extends HttpServlet {
 		}
 
 		ProductBean product = new ProductBean(name, price, stock, categoryId);
-		boolean result = createProductDAO().insertProduct(product);
+		boolean result = new ProductDAO().insertProduct(product);
 
 		if (result) {
 			response.sendRedirect("product-list");
 		} else {
 			request.setAttribute("error", "登録に失敗しました。");
 
-			List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+			List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 			request.setAttribute("categories", categories);
 
 			request.getRequestDispatcher("/product-add.jsp").forward(request, response);

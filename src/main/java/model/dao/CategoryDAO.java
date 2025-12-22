@@ -50,9 +50,4 @@ public class CategoryDAO {
 
 		return categories;
 	}
-	
-	protected CategoryDAO createCategoryDAO() {
-	    return new CategoryDAO();
-	}
-
 }

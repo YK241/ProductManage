@@ -125,46 +125,5 @@ public class ProductDAO {
 			return false;
 		}
 	}
-	
-	public List<ProductBean> getProductsByCategory(int categoryId) {
-	    List<ProductBean> products = new ArrayList<>();
-
-	    String sql = """
-	        SELECT p.id, p.name, p.price, p.stock,
-	               p.category_id, c.category_name
-	        FROM products p
-	        JOIN categories c ON p.category_id = c.id
-	        WHERE p.category_id = ?
-	        ORDER BY p.id
-	    """;
-
-	    try (Connection conn = ConnectionManager.getConnection();
-	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-	        pstmt.setInt(1, categoryId);
-	        ResultSet rs = pstmt.executeQuery();
-
-	        while (rs.next()) {
-	            ProductBean product = new ProductBean();
-	            product.setProductId(rs.getInt("id"));
-	            product.setName(rs.getString("name"));
-	            product.setPrice(rs.getInt("price"));
-	            product.setStock(rs.getInt("stock"));
-	            product.setCategoryId(rs.getInt("category_id"));
-	            product.setCategoryName(rs.getString("category_name"));
-	            products.add(product);
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	    return products;
-	}
-
-	
-	protected ProductDAO createProductDAO() {
-	    return new ProductDAO();
-	}
 
 }

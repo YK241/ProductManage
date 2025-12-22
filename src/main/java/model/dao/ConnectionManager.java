@@ -8,7 +8,7 @@ public class ConnectionManager {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/product_management?serverTimezone=UTC";
 	private static final String USER = "root";
-	private static final String PASS = "cTqf2Gm:LyNX";//passの為仮名
+	private static final String PASS = "pass";//passの為仮名
 
 	public static Connection getConnection() throws SQLException {
 

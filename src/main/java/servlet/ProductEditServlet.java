@@ -15,14 +15,6 @@ import model.entity.ProductBean;
 
 @WebServlet("/product-edit")
 public class ProductEditServlet extends HttpServlet {
-	
-    protected ProductDAO createProductDAO() {
-        return new ProductDAO();
-    }
-
-    protected CategoryDAO createCategoryDAO() {
-        return new CategoryDAO();
-    }
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +22,8 @@ public class ProductEditServlet extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		ProductBean product = createProductDAO().findById(id);
+		ProductDAO productDAO = new ProductDAO();
+		ProductBean product = productDAO.findById(id);
 
 		if (product == null) {
 			request.setAttribute("error", "商品が存在しません");
@@ -38,7 +31,7 @@ public class ProductEditServlet extends HttpServlet {
 			return;
 		}
 
-		List<CategoryBean> categories = createCategoryDAO().getAllCategories();
+		List<CategoryBean> categories = new CategoryDAO().getAllCategories();
 
 		request.setAttribute("product", product);
 		request.setAttribute("categories", categories);
@@ -68,7 +61,7 @@ public class ProductEditServlet extends HttpServlet {
 	        product.setName(request.getParameter("name"));
 
 	        request.setAttribute("product", product);
-	        request.setAttribute("categories", createCategoryDAO().getAllCategories());
+	        request.setAttribute("categories", new CategoryDAO().getAllCategories());
 
 	        request.getRequestDispatcher("/product-edit.jsp").forward(request, response);
 	        return;
@@ -93,7 +86,7 @@ public class ProductEditServlet extends HttpServlet {
 	    );
 	    product.setProductId(id);
 
-	    createProductDAO().updateProduct(product);
+	    new ProductDAO().updateProduct(product);
 
 	    request.getSession().setAttribute("message", "商品情報を更新しました");
 	    response.sendRedirect("product-list");
